@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ravio - Event Organizer, Wedding Organizer, dan Photo Documentation.">
+<title>RAVIO 2026</title>
+<link rel="icon" href="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/ravioevent-favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#B88A44;--gold-light:#C79A5B;--black:#0A0A0A;--gray:#A9A9A9;--dark:#1a1a1a;--white:#fff;--whatsapp:#25D366;--whatsapp-dark:#1ebe5d}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+body{background:#000;color:#fff;line-height:1.7;overflow-x:hidden}
+header{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05)}
+.navbar{width:90%;max-width:1200px;margin:auto;height:80px;display:flex;justify-content:space-between;align-items:center}
+.brand{font-size:24px;letter-spacing:4px;font-weight:700}.brand span{color:var(--gold)}
+.menu{display:flex;gap:28px;flex-wrap:wrap}.menu a{color:var(--gray);text-decoration:none;font-size:13px;letter-spacing:2px;text-transform:uppercase;font-weight:500}
+.menu a:hover{color:var(--gold)}
+.menu-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--white);width:42px;height:42px;border-radius:10px;cursor:pointer;font-size:20px}
+.container{width:90%;max-width:1100px;margin:auto}
+section{padding:80px 0}
+.section-title{font-size:32px;font-weight:300;margin-bottom:16px}.section-title strong{font-weight:600;color:var(--gold)}
+.section-desc{color:var(--gray);max-width:760px;margin-bottom:36px;font-size:15px}
+.hero{min-height:100vh;background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,.95)),url('assets/hero-bg.jpg');background-size:cover;background-position:center;display:flex;align-items:center;padding-top:80px}
+.hero-content{max-width:800px}
+.hero-subtitle{color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-size:14px;margin-bottom:20px;font-weight:500}
+.hero h1{font-size:clamp(38px,6vw,64px);line-height:1.2;font-weight:300;margin-bottom:25px}
+.hero h1 strong{font-weight:700}
+.hero p{color:var(--gray);font-size:16px;margin-bottom:40px;max-width:600px}
+.buttons,.btn-group{display:flex;gap:20px;flex-wrap:wrap}
+.btn,.btn-read-more{padding:14px 30px;border-radius:50px;text-decoration:none;transition:.3s;font-size:14px;letter-spacing:1px;font-weight:500;border:none;cursor:pointer;display:inline-block}
+.btn-primary{background:var(--gold);color:var(--black)}.btn-primary:hover{background:var(--gold-light)}
+.btn-secondary{border:1px solid rgba(255,255,255,.2);color:#fff;background:transparent}.btn-secondary:hover{background:rgba(255,255,255,.1)}
+.whatsapp-float{position:fixed;right:16px;bottom:16px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--whatsapp),var(--whatsapp-dark));display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 10px 24px rgba(37,211,102,.32);z-index:9999}
+.whatsapp-logo{width:28px;height:28px}
+.whatsapp-tooltip{position:absolute;right:62px;bottom:50%;transform:translateY(50%);background:rgba(0,0,0,.85);color:var(--white);font-size:11px;font-weight:500;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.more-text{display:none;margin-top:20px}
+.box-card,.carousel-section{background:var(--dark);padding:28px;border-radius:16px;border-top:3px solid var(--gold)}
+.box-card h3,.carousel-head h3{color:var(--gold);margin-bottom:14px;font-size:18px;font-weight:600}
+.muted-text,.testimonial-text,.contact-info{color:var(--gray);font-size:14px}
+.section-label{color:var(--white);margin:15px 0 10px;font-size:14px;font-weight:500}
+ul.custom-list{list-style:none}ul.custom-list li{margin-bottom:12px;color:var(--gray);position:relative;padding-left:20px;font-size:14px}ul.custom-list li::before{content:"•";color:var(--gold);position:absolute;left:0;font-weight:bold}
+.portfolio-list{columns:2;column-gap:40px}.portfolio-list li{break-inside:avoid}
+.carousel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.carousel-controls{display:flex;gap:10px}.carousel-btn{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.12);background:transparent;color:#fff;cursor:pointer}
+.carousel-btn:hover{background:var(--gold);color:var(--black)}
+.carousel-viewport{overflow:hidden;width:100%;border-radius:12px;touch-action:pan-y}
+.carousel-track{display:flex;transition:transform .4s ease;will-change:transform}
+.carousel-slide{min-width:100%;flex:0 0 100%}
+.carousel-img{width:100%;height:320px;object-fit:cover;display:block;border-radius:12px;background:#111}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:14px;flex-wrap:wrap}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;border:none}.dot.active{background:var(--gold)}
+.testimonial-card{background:linear-gradient(180deg,#1b1b1b 0%,#141414 100%);border:1px solid rgba(184,138,68,.22);border-top:3px solid var(--gold);border-radius:16px;padding:28px;min-height:230px}
+.testimonial-stars{color:var(--gold);font-size:16px;letter-spacing:2px;margin-bottom:14px}
+.testimonial-text{font-style:italic;line-height:1.8;margin-bottom:18px}
+.testimonial-card h4{color:var(--white);font-size:15px;margin-bottom:4px;font-weight:600}.testimonial-card span{color:var(--gold);font-size:13px}
+#clients,#kontak,#testimoni,#layanan{background:#050505}
+.clients-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:18px}
+.client-box{background:rgba(255,255,255,.75);border-radius:12px;padding:18px;display:flex;align-items:center;justify-content:center;min-height:100px}
+.client-box img{max-width:100%;max-height:54px;object-fit:contain;transition:.3s}
+.client-box img:hover{transform:scale(1.04)}
+.client-full{width:100%;height:100%;max-width:none;max-height:none;object-fit:contain;transform:scale(1.35)}
+.client-rsau img,.client-muda img{max-height:78px;transform:scale(1.2)}.client-muda img{max-height:90px;transform:scale(1.35)}
+.social-links{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.social-links a,.muted-inline{color:var(--gray);text-decoration:none;font-weight:500}.social-links a:hover{text-decoration:underline}
+.contact-info{font-size:16px;margin-bottom:20px}.contact-info span{display:block;margin-bottom:5px;color:var(--white);font-weight:500}
+.contact-center{text-align:center;padding-top:70px;padding-bottom:60px}.contact-center-inner{max-width:720px}
+footer{background:#000;padding:25px 0;text-align:center;color:var(--gray);font-size:13px;border-top:1px solid #1a1a1a}
+@media (max-width:992px){.grid-2{grid-template-columns:1fr}.portfolio-list{columns:1}.carousel-img{height:260px}}
+@media (max-width:768px){
+.menu-toggle{display:block}
+.menu{display:none;position:absolute;top:80px;left:0;width:100%;background:rgba(0,0,0,.96);flex-direction:column;gap:0;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.menu.show{display:flex}
+.menu a{padding:14px 5%;width:100%}
+.buttons,.btn-group{flex-direction:column}
+section{padding:64px 0}.hero{padding-top:110px}
+.carousel-img{height:220px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="brand">RAVIO<span>EVENT</span></div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav class="menu" id="mobileMenu">
+      <a href="#hero">Home</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#portofolio">Portofolio</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#clients">Clients</a>
+      <a href="#brand-lain">Ravio Momen</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-subtitle">RAVIO EVENT SINCE 2015</div>
+      <h1>Anda menikmati momennya, <br><strong>kami mengamankan prosesnya</strong></h1>
+      <p>Mentransformasi setiap konsep menjadi pengalaman tak terlupakan dan setiap kebutuhan pengadaan menjadi solusi yang efisien dan terpercaya.</p>
+      <div class="buttons">
+        <a href="#kontak" class="btn btn-primary">Diskusikan Dengan Kami</a>
+        <a href="#portofolio" class="btn btn-secondary">Lihat Portofolio</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tentang">
+  <div class="container">
+    <h2 class="section-title">Ravio <strong>?</strong></h2>
+    <p class="section-desc">PT Ravio Multi Kreasi adalah perusahaan dinamis di bidang Event Organizer (EO) Profesional dan Pengadaan Barang terintegrasi. Berdiri sejak tahun 2015, nama "Multi Kreasi" mencerminkan beragam inovasi kami untuk memenuhi tantangan Anda.</p>
+    <div class="grid-2">
+      <div class="box-card"><h3>VISI & MISI</h3><p class="muted-text"><strong>Visi:</strong> Menjadi mitra terdepan dalam industri event dan pengadaan barang yang diakui atas kreativitas tanpa batas, eksekusi flawless, dan komitmen total terhadap kepuasan klien.</p><div class="more-text"><p class="section-label">Misi Kami:</p><ul class="custom-list"><li><strong>Kreativitas & Inovasi:</strong> Merancang dan mengeksekusi konsep acara orisinal.</li><li><strong>Integritas & Reliabilitas:</strong> Mitra andal dengan transparansi dan ketepatan waktu.</li><li><strong>Solusi Holistik:</strong> Layanan terpadu "satu atap" (perencanaan hingga logistik).</li><li><strong>Nilai Terbaik:</strong> Solusi cost-effective tanpa mengorbankan kualitas.</li><li><strong>Kepuasan Klien:</strong> Melebihi ekspektasi klien secara jangka panjang.</li></ul></div><button class="btn-read-more" onclick="toggleText(this)">Read More</button></div>
+      <div class="box-card"><h3>CORE VALUES</h3><p class="muted-text">Nilai utama yang selalu kami pegang teguh dalam setiap pelaksanaan proyek untuk menjamin kepuasan klien.</p><div class="more-text"><ul class="custom-list"><li><strong style="color:var(--white);">R - Reliable:</strong> Komitmen pada deadline dan kualitas.</li><li><strong style="color:var(--white);">A - Adaptive:</strong> Tanggap terhadap perubahan & kebutuhan unik klien.</li><li><strong style="color:var(--white);">V - Value Creator:</strong> Memberikan nilai tambah dalam setiap proyek.</li><li><strong style="color:var(--white);">I - Innovative:</strong> Terus mencari solusi dan ide segar.</li><li><strong style="color:var(--white);">O - Outstanding Service:</strong> Fokus total pada pengalaman klien.</li></ul></div><button class="btn-read-more" onclick="toggleText(this)">Read More</button></div>
+    </div>
+  </div>
+</section>
+
+<section id="layanan">
+  <div class="container">
+    <h2 class="section-title">Layanan <strong>Kami</strong></h2>
+    <p class="section-desc"><strong>Keunggulan Integrasi:</strong> Kombinasi layanan EO dan Pengadaan Barang kami memberikan efisiensi biaya, keseragaman kualitas, dan kemudahan koordinasi. Cukup satu pintu untuk semua kebutuhan Anda.</p>
+    <div class="grid-2">
+      <div class="box-card"><h3>A. Event Organizer</h3><p class="muted-text">Merancang dan mengelola acara dengan standar profesional tertinggi (Corporate, Exhibition, Private, Hybrid Event).</p></div>
+      <div class="box-card"><h3>B. Pengadaan Barang</h3><p class="muted-text">Melayani kebutuhan pengadaan logistik pendukung event dan korporat dengan jaringan supplier terpercaya.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="portofolio">
+  <div class="container">
+    <h2 class="section-title"><strong>Portofolio</strong></h2>
+    <p class="section-desc">Beragam pengalaman kami menangani klien-klien terkemuka.</p>
+    <ul class="custom-list portfolio-list">
+      <li>Bedah Buku "Jejak Listrik Di Tanah Raja" - NuArt Sculpture Park</li>
+      <li>Penanaman Perdana Hutan Tanaman Energi INDONESIA POWER</li>
+      <li>Rapat Kerja PT PLN Gas & Geotermal</li>
+      <li>Workshop Standarisasi Layanan Human Capital</li>
+      <li>Tasyakuran HLN KE77 dan Peresmian SPKLU</li>
+    </ul>
+    <div class="carousel-section">
+      <div class="carousel-head"><h3>Portofolio</h3><div class="carousel-controls"><button class="carousel-btn" onclick="prevSlide('portfolioCarousel')">‹</button><button class="carousel-btn" onclick="nextSlide('portfolioCarousel')">›</button></div></div>
+      <div class="carousel-viewport"><div class="carousel-track" id="portfolioCarousel">
+        <div class="carousel-slide"><img src="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/_IUS1310.jpg" alt="Portfolio 1" class="carousel-img"></div>
+        <div class="carousel-slide"><img src="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/YANZ1587.jpg" alt="Portfolio 2" class="carousel-img"></div>
+        <div class="carousel-slide"><img src="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/IMG_4075.jpg" alt="Portfolio 3" class="carousel-img"></div>
+      </div></div>
+      <div class="carousel-dots" id="portfolioDots"><button class="dot active" onclick="goToSlide('portfolioCarousel',0)"></button><button class="dot" onclick="goToSlide('portfolioCarousel',1)"></button><button class="dot" onclick="goToSlide('portfolioCarousel',2)"></button></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimoni">
+  <div class="container">
+    <h2 class="section-title">Ravio <strong>Kata Mereka</strong></h2>
+    <div class="carousel-section">
+      <div class="carousel-head"><h3>Testimoni</h3><div class="carousel-controls"><button class="carousel-btn" onclick="prevSlide('testimonialCarousel')">‹</button><button class="carousel-btn" onclick="nextSlide('testimonialCarousel')">›</button></div></div>
+      <div class="carousel-viewport"><div class="carousel-track" id="testimonialCarousel">
+        <div class="carousel-slide"><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">“Tim Ravio sangat profesional, komunikatif, dan hasil acaranya rapi. Semua berjalan lancar sesuai harapan.”</p><h4>Client Corporate</h4><span>PT XYZ</span></div></div>
+        <div class="carousel-slide"><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p class="testimonial-text">“Pelayanan cepat dan detail. Sangat membantu untuk pengadaan kebutuhan event kami.”</p><h4>Instansi Partner</h4><span>Partner EO</span></div></div>
+      </div></div>
+      <div class="carousel-dots" id="testimonialDots"><button class="dot active" onclick="goToSlide('testimonialCarousel',0)"></button><button class="dot" onclick="goToSlide('testimonialCarousel',1)"></button></div>
+    </div>
+  </div>
+</section>
+
+<section id="clients">
+  <div class="container">
+    <h2 class="section-title">Our <strong>Clients</strong></h2>
+    <div class="clients-grid">
+      <div class="client-box"><img src="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/pln-358x128.png" alt="PLN"></div>
+      <div class="client-box"><img src="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/indosesia(1).png" alt="Indonesia Power"></div>
+      <div class="client-box"><img class="client-full" src="https://uploads.onecompiler.io/44tgst6dx/44tgtf8pc/siliwangi%20trans%20biru.png" alt="Siliwangi Trans"></div>
+    </div>
+  </div>
+</section>
+
+<section id="brand-lain">
+  <div class="container">
+    <h2 class="section-title">Ravio <strong>Untuk Setiap Momen</strong></h2>
+    <div class="grid-2">
+      <div class="box-card"><h3>Ravio Wedding</h3><p class="muted-text">Layanan wedding organizer dengan konsep elegan, hangat, dan detail untuk membuat hari pernikahan berjalan lancar dan berkesan.</p><a href="wedding.html" class="btn btn-primary">Klik Disini</a></div>
+      <div class="box-card"><h3>Ravio Photo</h3><p class="muted-text">Layanan fotografi dengan mood visual yang konsisten, modern, dan artistik untuk kebutuhan dokumentasi dan branding.</p><a href="photo.html" class="btn btn-primary">Klik Disini</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="kontak" class="contact-center">
+  <div class="container contact-center-inner">
+    <h2 class="section-title">Hubungi <strong>Kami</strong></h2>
+    <div class="contact-info"><span><strong>Alamat :</strong></span> Jalan Tripang No.26, Bandung, Jawa Barat</div>
+    <div class="contact-info"><span><strong>Telepon:</strong></span><div class="social-links"><span class="muted-inline">☎ 0878-2175-5824</span><span class="muted-inline">☎ 0852-1622-6317</span></div></div>
+  </div>
+</section>
+
+<footer><div class="container">&copy; RAVIO EVENT 2026. All Rights Reserved.</div></footer>
+
+<a href="https://wa.me/6287821755824" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Ravio">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" class="whatsapp-logo">
+  <span class="whatsapp-tooltip">Chat Me</span>
+</a>
+
+<script>
+const carousels=new Map();
+function toggleText(button){const c=button.previousElementSibling;const h=c.style.display!=="block";c.style.display=h?"block":"none";button.textContent=h?"Tutup":"Read More";}
+function toggleMenu(){document.getElementById("mobileMenu").classList.toggle("show")}
+function initCarousel(id,dotsId){const t=document.getElementById(id);if(!t)return;const v=t.parentElement;const d=[...document.querySelectorAll(`#${dotsId} .dot`)];carousels.set(id,{index:0,total:t.children.length,dots:d,viewport:v,startX:0,dragging:false});updateCarousel(id);setupSwipe(id)}
+function updateCarousel(id){const data=carousels.get(id);if(!data)return;document.getElementById(id).style.transform=`translateX(-${data.index*100}%)`;data.dots.forEach((dot,i)=>dot.classList.toggle("active",i===data.index))}
+function nextSlide(id){const data=carousels.get(id);if(!data)return;data.index=(data.index+1)%data.total;updateCarousel(id)}
+function prevSlide(id){const data=carousels.get(id);if(!data)return;data.index=(data.index-1+data.total)%data.total;updateCarousel(id)}
+function goToSlide(id,index){const data=carousels.get(id);if(!data)return;data.index=index;updateCarousel(id)}
+function setupSwipe(id){const data=carousels.get(id);if(!data)return;data.viewport.addEventListener("touchstart",e=>{data.startX=e.touches[0].clientX;data.dragging=true},{passive:true});data.viewport.addEventListener("touchend",e=>{if(!data.dragging)return;const diff=data.startX-e.changedTouches[0].clientX;if(Math.abs(diff)>50) diff>0 ? nextSlide(id) : prevSlide(id);data.dragging=false},{passive:true})}
+document.addEventListener("DOMContentLoaded",()=>{initCarousel("portfolioCarousel","portfolioDots");initCarousel("testimonialCarousel","testimonialDots");const menu=document.getElementById("mobileMenu");if(menu){menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>menu.classList.remove("show")))}});</script>
+</body>
+</html>
